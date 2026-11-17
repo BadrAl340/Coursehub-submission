@@ -1,0 +1,32 @@
+erDiagram
+    DEPARTMENTS ||--o{ COURSES : contains
+    USERS ||--o{ ENROLLMENTS : makes
+    COURSES ||--o{ ENROLLMENTS : receives
+
+    DEPARTMENTS {
+        int department_id PK
+        varchar department_name
+        varchar description
+    }
+    USERS {
+        int user_id PK
+        varchar full_name
+        varchar email UK
+        varchar password_hash
+        enum role
+    }
+    COURSES {
+        int course_id PK
+        varchar course_code UK
+        varchar course_name
+        text description
+        tinyint credit_hours
+        int department_id FK
+    }
+    ENROLLMENTS {
+        int enrollment_id PK
+        int user_id FK
+        int course_id FK
+        timestamp enrollment_date
+        enum status
+    }
